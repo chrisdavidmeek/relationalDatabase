@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import MainList from "./components/mainList/MainList";
+import UserList from "./components/userList/UserList";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { initCart } from "../src/components/redux/actions/setActions";
@@ -39,9 +40,11 @@ function App() {
         <div className="App">
           <nav>
             <Link to={"/mainlist"}>Main List</Link>
+            <Link to={"/userlist"}>My Collection</Link>
           </nav>
           <Switch>
             <Route path={"/mainlist"} component={MainList} />
+            <Route path={"/userlist"} component={UserList} />
           </Switch>
         </div>
       </Router>

@@ -18,3 +18,10 @@ export const checkChange = () => {
     type: "CHECK_CHANGE"
   };
 };
+
+export const myCart = value => {
+  return {
+    type: "MY_CART",
+    value: value
+  };
+};

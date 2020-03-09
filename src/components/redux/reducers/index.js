@@ -4,7 +4,8 @@ const initState = {
   sort: {
     console: { toggle: false, val: [] }
   },
-  cart: []
+  cart: [],
+  added: []
 };
 
 const rootReducer = (state = initState, action) => {
@@ -34,6 +35,13 @@ const rootReducer = (state = initState, action) => {
     return {
       ...state,
       cart: action.value
+    };
+  }
+
+  if (action.type === "MY_CART") {
+    return {
+      ...state,
+      userCart: action.value
     };
   }
 

@@ -7,6 +7,7 @@ const MainList = () => {
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.cart);
   const sort = useSelector(state => state.sort);
+  const addedArr = useSelector(state => state.added);
   const dispatch = useDispatch();
   const [items, setItems] = React.useState(cart);
   const db = fire.firestore();
@@ -24,12 +25,30 @@ const MainList = () => {
     setItems(sortedList);
   }, [sort, cart]);
 
+  const addGame = (name, imageUrl, consoles, id) => {
+    console.log(addedArr);
+
+    if (addedArr.includes(id)) {
+      console.log("you can't add this");
+    } else {
+      db.collection("users")
+        .add({
+          name: name,
+          imageUrl: imageUrl,
+          console: consoles
+        })
+        .then(addedArr.push(id));
+    }
+  };
   let itemsEle = items.map((it, idx) => (
     <div key={idx}>
       <img src={it.imageUrl} height="200px" width="auto"></img>
       <h2>{it.name}</h2>
       <h2>{it.console}</h2>
-      <button onClick={() => addGame()}>Add to favorites</button>
+
+      <button onClick={() => addGame(it.name, it.imageUrl, it.console, it.id)}>
+        Add to favorites
+      </button>
     </div>
   ));
 
