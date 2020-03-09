@@ -29,6 +29,7 @@ const MainList = () => {
       <img src={it.imageUrl} height="200px" width="auto"></img>
       <h2>{it.name}</h2>
       <h2>{it.console}</h2>
+      <button onClick={() => addGame()}>Add to favorites</button>
     </div>
   ));
 
