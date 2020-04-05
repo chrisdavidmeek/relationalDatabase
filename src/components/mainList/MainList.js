@@ -5,6 +5,7 @@ import fire from "../firebase/fire";
 
 const MainList = () => {
   const user = useSelector(state => state.user);
+  const realUser = useSelector(state => state.realUser);
   const cart = useSelector(state => state.cart);
   const sort = useSelector(state => state.sort);
   const addedArr = useSelector(state => state.added);
@@ -14,6 +15,7 @@ const MainList = () => {
 
   React.useEffect(() => {
     let sortedList = cart;
+    console.log(user.name);
 
     for (let i in sort) {
       if (sort[i].toggle) {
@@ -26,12 +28,11 @@ const MainList = () => {
   }, [sort, cart]);
 
   const addGame = (name, imageUrl, consoles, id) => {
-    console.log(addedArr);
-
     if (addedArr.includes(id)) {
       console.log("you can't add this");
     } else {
       db.collection("users")
+        .doc()
         .add({
           name: name,
           imageUrl: imageUrl,
@@ -40,6 +41,7 @@ const MainList = () => {
         .then(addedArr.push(id));
     }
   };
+
   let itemsEle = items.map((it, idx) => (
     <div key={idx}>
       <img src={it.imageUrl} height="200px" width="auto"></img>

@@ -25,3 +25,16 @@ export const myCart = value => {
     value: value
   };
 };
+export const checkSignIn = sign => {
+  return {
+    type: "CHECK_SIGN_IN",
+    check: sign
+  };
+};
+
+export const currentUser = user => {
+  return {
+    type: "CURRENT_USER",
+    user: user
+  };
+};
