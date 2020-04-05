@@ -22,10 +22,6 @@ const SignUp = () => {
   //create submit function with firebase
 
   const onSubmit = () => {
-    db.collection("users")
-      .doc(user.uid)
-      .collection("favorites")
-      .add({ name: user.name });
     fire
       .auth()
       .createUserWithEmailAndPassword(value.email, value.password)
@@ -47,6 +43,10 @@ const SignUp = () => {
           .catch(function(error) {
             //an error happened
           });
+        db.collection("users")
+          .doc(user.uid)
+          .collection("favorites")
+          .add({ name: user.name });
       })
       .catch(function(error) {
         //handle errors here
